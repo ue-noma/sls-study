@@ -1,0 +1,46 @@
+service: ts-sls
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-northeast-1
+
+functions:
+  api:
+    handler: index.handler
+    events:
+      - httpApi:
+          path: /
+          method: get
+
+# resources:
+#   Resources:
+#     LogQueue:
+#       Type: AWS::SQS::Queue
+#       Properties:
+#         QueueName: uenoma-sls-test
+#         MessageRetentionPeriod: 1800
+#         VisibilityTimeout: 60
+#     LogCueuePolicy:
+#       Type: AWS::SQS::QueuePolicy
+#       Properties:
+#         Queues:
+#           - !Ref LogQueue
+#         PolicyDocument:
+#           Statement:
+#             - Sid: AllowSelf
+#               Action:
+#                 - "sqs:SendMessage"
+#                 - "sqs:ReceiveMessage"
+#               Effect: "Allow"
+#               Resource: !GetAtt LogQueue.Arn
+#               Principal:
+#                 AWS: arn:aws:iam::220504541948:role/ts-sls-dev-ap-northeast-1-lambdaRole
+#             - Sid: AllowUeno
+#               Action:
+#                 - "sqs:SendMessage"
+#               Effect: "Allow"
+#               Resource: !GetAtt LogQueue.Arn
+#               Principal:
+#                 AWS: arn:aws:iam::220504541948:user/masaki-uuaa
