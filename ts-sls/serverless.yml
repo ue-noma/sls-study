@@ -1,10 +1,39 @@
 service: ts-sls
-frameworkVersion: '3'
+
+plugins:
+  - serverless-offline
+  - serverless-esbuild
+  - serverless-plugin-typescript
 
 provider:
   name: aws
   runtime: nodejs18.x
   region: ap-northeast-1
+
+custom:
+  serviceName: hoge-${opt:stage, 'dev'}
+  esbuild:
+    bundle: true
+    minify: false
+    sourcemap: true
+    target: node18
+    platform: node
+    concurrency: 10
+    define:
+      {
+        "SERVICE_NAME": 'aaa',
+      }
+
+# build:
+#   esbuild:
+#     bundle: true
+#     minify: true
+#     sourcemap: true
+#     target: 'node20'
+#     define:
+#       {
+#         "SERVICE_NAME": 'hoge-${opt:stage, "dev"}',
+#       }
 
 functions:
   api:

@@ -1,0 +1,15 @@
+{
+  "name": "my-api",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "serverless offline",
+    "deploy": "serverless deploy"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.119",
+    "esbuild": "^0.25.3",
+    "serverless": "^4.14.1",
+    "serverless-offline": "^14.4.0",
+    "typescript": "^5.3.0"
+  }
+}

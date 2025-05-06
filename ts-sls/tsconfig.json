@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "outDir": ".build"   // ← 実際には esbuild が使うため不要だがあってもOK
+  },
+  "include": ["./**/*.ts"],
+  // "exclude": ["node_modules", ".build"]
+}

@@ -1,0 +1,33 @@
+service: my-api
+frameworkVersion: '4'
+
+provider:
+  name: aws
+  runtime: nodejs22.x
+  region: ap-northeast-1
+
+functions:
+  root:
+    handler: handler.hello
+    events:
+      - http:
+          path: /
+          method: get
+
+plugins:
+  - serverless-offline
+
+build:
+  esbuild:
+    bundle: true
+    minify: true
+    sourcemap: true
+    exclude: ['aws-sdk']
+    target: node22
+    platform: node
+    define:
+      SERVICE_NAME: '"my-api4-${sls:stage}"'
+
+custom:
+  serverless-offline:
+    allowCache: false
