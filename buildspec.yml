@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 22
+    commands:
+      - npm install -g serverless
+  pre_build:
+    commands:
+      - cd ts-sls/sls-2
+      - npm install
+  build:
+    commands:
+      - serverless deploy --stage dev
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: yes
